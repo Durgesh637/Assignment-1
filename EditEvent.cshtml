@@ -1,0 +1,99 @@
+﻿@model IEnumerable<EventMgmt.Models.Event>
+
+@{
+    ViewBag.Title = "EditEvents";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+}
+
+<h2>CreateOrders</h2>
+
+  <div class="content-page">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12 col-lg-12">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between">
+                            <div class="header-title">
+                                <h4 class="card-title">Edit Event Details</h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+@using (Html.BeginForm("EditEvent", "home", FormMethod.Post, new { enctype = "multipart/Form-Data" }))
+{
+                            foreach(var item in Model){
+                            <form>
+                                <div class="form-row">
+                                    <input type="hidden" name="eventid" value="@item.eventid" />
+                                    
+                                    <div class="col-md-6 mb-3">
+                                        <label for="validationDefault02">Title</label>
+                                        <input type="text" class="form-control" name="title"  value="@item.title" id="validationDefault02" required>
+                                    </div>
+                                   
+                                    
+                                    <div class="col-md-6 mb-3">
+                                        <label for="validationDefaultUsername">Target Amount</label>
+                                        <div class="input-group">
+
+                                            <input type="text" class="form-control" name="targetAmount" value="@item.targetAmount" id="validationDefaultUsername" aria-describedby="inputGroupPrepend2" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="validationDefaultUsername">Event Date</label>
+                                        <div class="input-group">
+
+                                            <input type="Date" class="form-control" name="Date"  value="@item.Date" id="validationDefaultUsername" aria-describedby="inputGroupPrepend2" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-body">
+
+                                        <div class="form-group row align-items-center">
+                                            <div class="col-sm-3 col-4">
+                                                <label class="col-form-label">Description</label>
+                                            </div>
+                                            <div class="col-sm-9 col-8">
+                                                <textarea class="form-control" name="Description"  id="horizontalTextarea" rows="3" placeholder="Textarea" required>@item.Description</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                   
+
+
+                                </div>
+
+
+
+
+
+
+
+
+                                <div class="form-group">
+                                    <button class="btn btn-primary" type="submit">UPDATE</button>
+                                </div>
+                            </form>
+                            }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

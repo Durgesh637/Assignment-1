@@ -1,0 +1,102 @@
+﻿
+@model IEnumerable<EventMgmt.Models.Transaction>
+@using EventMgmt.Models;
+
+
+@{
+    ViewBag.Title = "CreateSponser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    UsersContext db = new UsersContext();
+    var dtls = db.events.ToList();
+
+}
+
+<h2>CreateTransaction</h2>
+@using (Html.BeginForm("CreateTransaction", "home", FormMethod.Post, new { enctype = "multipart/Form-Data" }))
+{
+    <div class="content-page">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12 col-lg-12">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between">
+                            <div class="header-title">
+                                <h4 class="card-title">Enter Event Details</h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+
+                            <form>
+                                <div class="form-row">
+                                    
+                                    <div class="col-md-6 mb-3">
+                                        <label for="validationDefaultUsername">TransactionType</label>
+                                        <div class="input mr-2">
+                                            <input type="radio" name="type" value="IN" id="radio1" checked="">
+                                            <label for="radio1">IN</label>
+                                        </div>
+                                        <div class="input mr-2">
+                                            <input type="radio" name="type" value="OUT" id="radio2">
+                                            <label for="radio2">OUT</label>
+                                        </div>
+                                        </div>
+
+
+                                        <div class="col-md-6 mb-3">
+                                            <label for="validationDefaultUsername">Amount</label>
+                                            <div class="input-group">
+
+                                                <input type="text" class="form-control" name="amount" id="validationDefaultUsername" aria-describedby="inputGroupPrepend2" required>
+                                            </div>
+                                        </div>
+                                       
+
+                                        <div class="col-md-6 mb-3">
+
+                                            <div class="input-group-prepend">
+                                                <label for="validationDefault01">EventName</label>
+                                            </div>
+                                            <select class="custom-select" name="eventid" id="inputGroupSelect01" required>
+
+
+                                                <option selected value="">Choose...</option>
+                                                @foreach (var item in dtls)
+                                                {
+                                                    <option value="@item.eventid">@item.title</option>
+                                                }
+                                            </select>
+                                        </div>
+
+
+
+
+
+
+
+
+
+
+                                        <div class="form-group">
+                                            <button class="btn btn-primary" type="submit">SUBMIT</button>
+                                        </div>
+                                    </div>
+                                    </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+
+
+
+
+
+
+

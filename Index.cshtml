@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-page">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6 col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Event Creation</h4>
+                    <p class="card-text">you want to create your Next Event  only Just One Click</p>
+                    <a href="@Url.Action("CreateEvents","home")" class="btn btn-primary btn-block">Create Event</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">View Payout</h4>
+                    <p class="card-text">just one click you can view your Donation</p>
+                    <a href="@Url.Action("ShowsPayout","home")" class="btn btn-primary btn-block">View payout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>

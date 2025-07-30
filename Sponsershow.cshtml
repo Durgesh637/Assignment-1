@@ -1,0 +1,107 @@
+﻿@using EventMgmt.Models;
+
+
+@{
+    ViewBag.Title = "Sponsershow";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    UsersContext db = new UsersContext();
+    var dtls = db.sponsorships.ToList();
+    
+}
+
+<h2>Sponsershow</h2>
+
+<div class="content-page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <div class="header-title">
+                            <h4 class="card-title">Orders Datatables</h4>
+                        </div>
+
+                        <a href="@Url.Action("CreateSponser","home")" class="btn btn-primary" style="margin-left:700px;">Add Sponser</a>
+                    </div>
+                    <div class="card-body">
+
+                        <div class="table-responsive">
+                            <table id="datatable" class="table data-tables table-striped" border="1">
+
+
+                                <thead>
+                                    <tr class="ligth">
+                                        <th>Sponsership id</th>
+                                        <th>Sponsership name</th>
+                                        <th>Amount</th>
+                                        <th>Event Name</th>
+                                        <th>Event Date</th>
+
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+
+
+
+
+
+
+                                <tbody>
+@foreach (var item in dtls)
+{
+
+
+    var eventName = db.events.Where(e => e.eventid == item.eventid).Select(e => e.title).FirstOrDefault() ?? "No Event Found";
+                                    <tr>
+                                        <td>@item.id</td>
+                                        <td>@item.sponsorname</td>
+                                        <td>@item.amount</td>
+                                        <td>@eventName</td>
+                                        <td>@item.date.ToString("dd-MM-yyyy")</td>
+                                        <td>
+                                            <a href="@Url.Action("EditSponser", "home", new { id = item.id})">EDIT</a> |
+                                            <a href="@Url.Action("DeleteSponser", "home", new { id = item.id})" onclick="return confirm('Are you sure you want to delete this item?');">DELETE</a>
+                                        </td>
+
+
+
+                                    </tr>
+
+
+}
+                                </tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

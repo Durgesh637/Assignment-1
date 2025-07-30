@@ -1,0 +1,102 @@
+﻿@using EventMgmt.Models;
+@{
+    ViewBag.Title = "Eventsshow";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    UsersContext db = new UsersContext();
+    var dtls = db.events.ToList();
+    
+}
+
+<h2>Ordersshow</h2>
+<div class="content-page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <div class="header-title">
+                            <h4 class="card-title">Orders Datatables</h4>
+                        </div>
+
+                        <a href="@Url.Action("CreateEvents","home")" class="btn btn-primary" style="margin-left:700px;">Add Event</a>
+                    </div>
+                    <div class="card-body">
+
+                        <div class="table-responsive">
+                            <table id="datatable" class="table data-tables table-striped" border="1">
+
+
+                                <thead>
+                                    <tr class="ligth">
+                                        <th>Eventid</th>
+                                        <th>EventName</th>
+                                        <th>Event Amount</th>
+                                        <th>Description</th>
+                                        <th>Date</th>
+
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+
+
+
+
+
+
+
+
+                                <tbody>
+                                   @foreach (var item in dtls) { 
+                                        <tr>
+                                            <td>@item.eventid</td>
+                                            <td>@item.title</td>
+                                            <td>@item.targetAmount</td>
+                                            <td>@item.Description</td>
+                                            <td>@item.Date.ToString("dd-MM-yyyy")</td>
+                                            <td>
+                                                <a href="@Url.Action("EditEvent","home",new {eventid = item.eventid})">EDIT</a> |
+                                                <a href="@Url.Action("DeleteEvent","home",new {eventid = item.eventid})" onclick="return confirm('Are you sure you want to delete this item?');">DELETE</a>
+                                            </td>
+
+
+
+                                        </tr>
+                                    
+                                   }
+
+                                </tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

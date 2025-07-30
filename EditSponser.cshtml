@@ -1,0 +1,99 @@
+﻿@model IEnumerable<EventMgmt.Models.Sponsorship>
+@using EventMgmt.Models;
+
+
+@{
+    ViewBag.Title = "EditSponser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+    UsersContext db = new UsersContext();
+    var dtls = db.events.ToList();
+    
+}
+
+<h2>EditSponser</h2>
+
+@using (Html.BeginForm("EditSponser", "home", FormMethod.Post, new { enctype = "multipart/Form-Data" }))
+{
+     <div class="content-page">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12 col-lg-12">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between">
+                            <div class="header-title">
+                                <h4 class="card-title">Enter Event Details</h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+@foreach (var item in Model) { 
+                            <form>
+                                <div class="form-row">
+                                    
+                                    <div class="col-md-6 mb-3">
+                                        <label for="validationDefault02">SponserName</label>
+                                        <input type="text" class="form-control" name="sponsorname" value="@item.sponsorname" id="validationDefault02" required>
+                                    </div>
+
+
+                                    <div class="col-md-6 mb-3">
+                                        <label for="validationDefaultUsername">Email</label>
+                                        <div class="input-group">
+
+                                            <input type="email" class="form-control" name="email" value="@item.email"id="validationDefaultUsername" aria-describedby="inputGroupPrepend2" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="validationDefault01">Amount</label>
+                                        <input type="text" class="form-control" name="amount" value="@item.amount" id="validationDefault01" required>
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+
+                                        <div class="input-group-prepend">
+                                            <label for="validationDefault01">EventName</label>
+                                        </div>
+                                        <select class="custom-select" name="eventid" id="inputGroupSelect01" required>
+
+
+                                            <option selected value="">Choose...</option>
+                                            @foreach (var items in dtls)
+                                            {
+                                                <option value="@items.eventid">@items.title</option>
+                                            }
+                                        </select>
+                                    </div>
+
+
+                                </div>
+
+
+
+
+
+
+
+
+                                <div class="form-group">
+                                    <button class="btn btn-primary" type="submit">SUBMIT</button>
+                                </div>
+                            </form>
+}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+
+
+
+
+
+
+
+
